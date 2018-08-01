@@ -1,0 +1,66 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Nanum+Gothic:400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/jquery.js"></script>
+  <title>혼행</title>
+</head>
+
+<body>
+  <main>
+    <div class="signin-bg-image">
+      <!-- 로딩 모듈 -->
+      <div class="loading">
+        <div class="loading__container">
+          <div class="loading__circle loading__color1"></div>
+          <div class="loading__circle loading__color2"></div>
+          <div class="loading__circle loading__color3"></div>
+        </div>
+      </div>
+
+      <div class="small-popup" id="small-popup">
+        <div class="small-popup__content">
+          <img src="../img/icon-info.png" alt="icon-info" class="small-popup__icon">
+          <h2 class="small-popup__text para"></h2>
+        </div>
+      </div>
+
+      <div class="signin">
+        <div class="signin__logo-box">
+          <a href="../index.html">
+            <img src="../img/logo-white.png" alt="logo-white" class="signin__logo">
+          </a>
+        </div>
+        <div class="signin__text">
+          <div class="heading-primary heading-primary--white">SIGNUP</div>
+          <div class="sub-para sub-para--white u-margin-top-2">가지고 계신 이메일주소를 아이디로 사용하세요!</div>
+        </div>
+        <form class="form">
+          <div class="form__group">
+            <input type="email" class="form__input" placeholder="이메일 주소" id="email" autocomplete="off" required>
+            <label for="email" class="form__label">사용하실 이메일을 입력해주세요.</label>
+          </div>
+          <div class="form__group">
+            <input type="password" class="form__input" placeholder="6자리 이상의 비밀번호" id="password" autocomplete="off" required>
+            <label for="password" class="form__label">사용하실 비밀번호를 입력해주세요.</label>
+          </div>
+          <button class="btn btn--color u-margin-top-2 signupButton">초간단 회원가입</button>
+          <div class="form__link-box">
+            <a href="signin.html" class="form__link">이미 아이디가 있으시다구요?</a>
+          </div>
+
+        </form>
+      </div>
+      <div class="signin__copyright para">&copy;2018 Hurray All Rights Reserved</div>
+    </div>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <script src="../js/firebase.js"></script>
+  <script src="../js/signup.js"></script>
+</body>
+
+</html>

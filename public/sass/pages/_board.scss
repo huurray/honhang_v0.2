@@ -1,0 +1,277 @@
+.main-board {
+  overflow: hidden;
+}
+
+.section-board {
+  width: 90%;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 12rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.re-search {
+  position: absolute;
+  bottom: -54rem;
+  left: 0;
+  width: 30rem;
+  height: 62rem;
+  padding-left: 3.5rem;
+  z-index: 99;
+  overflow: hidden;
+
+  &__bar {
+    width: 100%;
+  }
+  &__label {
+    display: block;
+  }
+  &__input {
+    width: 80%;
+    height: 4.5rem;
+    font-size: 1.4rem; 
+    padding: 1rem;
+    border-radius: 2px;
+    background-color: rgba($color-white, 0.3);
+    border: none;
+    display: block;
+    transition: all 0.3s;
+    color: $color-white;
+    font-family: 'Nanum Gothic', sans-serif;
+    margin-bottom: 2rem;
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+
+
+    &::-webkit-input-placeholder {
+      color: $color-grey-light-3;
+    }
+    &:invalid {
+      color: $color-grey-dark;
+    }
+  }
+}
+
+.side-nav {
+  margin: 3rem 0;
+  
+  &__box {
+    width: 100%;
+    cursor: pointer;
+    letter-spacing: 0.1rem;
+    transition: all .3s;
+    &:hover {
+      transform: translateY(-0.5rem);
+    }
+    &:active {
+      transform: translateY(0.5rem);
+    }
+
+  }
+  &__icon {
+    float: left;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.3rem;
+    margin-right: 1rem;
+  }
+}
+
+.sort-tap {
+  float: left;
+  width: 35%;
+  height: 100%;
+  margin-top: 35rem;
+  text-align: right;
+  padding-right: 10rem;
+  &__box {
+    display: inline-block;
+    transition: all 0.5s;
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+    &:hover,
+    &:active {
+      transform: translateY(-2px);
+    }
+    &.on {
+      border-bottom: 2px solid $color-white;
+    }
+  }
+}
+
+.board {
+  float: left;
+  width: 35%;
+  position: relative;
+  max-height: 100%;
+  overflow: auto;
+  &__back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    backface-visibility: hidden;
+    filter: brightness(90%)
+  }
+  &__total {
+    color: rgba($color-white, 0.6) !important;
+    margin-left: 3rem;
+    border-bottom: 1px solid rgba($color-white, 0.2);
+  }
+  &__list {
+    width: 100%;
+    height: 100%;
+  }
+  &__list-item {
+    width: 100%;
+    list-style: none;
+    position: relative;
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, rgba($color-white, 0.2) 50%);
+    background-size: 230%;
+    transition: all .5s;
+    &:hover,
+    &:active {
+      background-position: 100%;
+    }
+    &.active {
+      background-position: 100%;
+    }
+  }
+  &__list-title {
+    display: block;
+    width: 100%;
+    height: 8rem;
+    padding: 3rem;
+    cursor: pointer;
+    &.active::after {
+      content: "";
+      position: absolute;
+      top: 3rem;
+      right: 2rem;
+      width: 2rem;
+      height: 2rem;
+      background: url(../img/arrow-right.png) no-repeat;
+      background-size: cover;
+    }
+  }
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-right: 2px solid rgba($color-white, 0.2);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba($color-white, 0.8);
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: $color-grey-dark-3;
+  }
+}
+
+.detail {
+  float: left;
+  width: 30%;
+  height: 100%;
+  &__modal {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-left: 1rem;
+    overflow: hidden;
+  }
+  &__content {
+    position: absolute;
+    top: 0;
+    right: -50rem;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 4rem;
+    background-color: rgba($color-white, 0.1);
+  }
+  &__row1 {
+    display: flex;
+  }
+  &__row2 {
+    display: flex;
+  }
+  &__absol {
+    position: absolute;
+    left: 4rem;
+    bottom: 4rem;
+  }
+  &__contact {
+    border-bottom: 2px solid #FFEB00;
+    cursor: pointer;   
+  }
+}
+
+.kakao-title {
+  background-image: url("../img/kakao-yellow.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-left: 2.5rem;
+
+}
+
+.kakao-profile {
+  position: absolute;
+  left: 4rem;
+  bottom: 10rem;
+  width: 30rem;
+  height: 14.5rem;
+  display: none;
+  background-color: rgba($color-white, 0.95);
+  border-radius: 3px;
+  padding:2rem;
+  z-index: 100;
+  &__img {
+    width: 10rem;
+    height: 10rem;
+    float: left;
+    border-radius: 50%;
+    margin-right: 2rem;
+  }
+  &__closer {
+    &:link,
+    &:visited {
+      text-decoration: none;
+      font-size: 2rem;
+      color: $color-grey-dark;
+      transition: all .2s;
+      position: absolute;
+      top: 0.2rem;
+      right: 1.2rem;
+      display: inline-block;
+    }
+    &:hover {
+      color: $color-primary
+    }
+    &:active {
+      transform: translateY(0.5rem);
+    }
+  }
+  &__name-box {
+    margin: 0.5rem 0 1rem 0;
+  }
+  &__name {
+    display: inline;
+  }
+  &__age {
+    display: inline;
+  }
+  
+  &__icon {
+    margin-top:  0.7rem;
+    margin-right: 0.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    float: left;
+  }
+}

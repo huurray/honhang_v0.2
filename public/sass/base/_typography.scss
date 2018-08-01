@@ -1,0 +1,158 @@
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  color: $color-grey-dark-3;
+}
+
+.heading-big {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.heading-primary {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 1.4;
+  &--white {
+    color: $color-white
+  }
+}
+
+.heading-secondary {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
+  font-size: 1.7rem;
+  line-height: 1.35;
+  &--white {
+    color: $color-white
+  }
+}
+
+.heading-tertiary {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  &--white {
+    color: $color-white
+  }
+  &--bold {
+    font-weight: 700;
+  }
+}
+
+.heading-english {
+  font-family: 'Lato', serif;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: $color-grey-dark-3;
+  &--white {
+    color: $color-white;
+  }
+  &--primary {
+    color: $color-primary-light;
+  }
+  &--primary-dark {
+    color: $color-primary-dark;
+  }
+}
+
+.para {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 1.4rem;
+  line-height: 2;
+  &--bold {
+    font-weight: 700;
+  }
+  &--white {
+    color: $color-white;
+  }
+}
+
+.sub-para {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 1.25rem;
+  line-height: 2;
+  &--bold {
+    font-weight: 700;
+  }
+  &--white {
+    color: $color-white;
+  }
+  &--grey {
+    color: $color-grey-dark;
+  }
+}
+
+.small-para {
+  margin-top: 0.2rem;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  &--white {
+    color: $color-white;
+  }
+  &--grey {
+    color: $color-grey-dark;
+  }
+}
+
+.tiny-para {
+  display: inline-block;
+  margin-right: 1rem;
+  font-family: 'Lato', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $color-white;
+  border-bottom: 1px solid rgba($color-white, 0.2);
+}
+
+.detail-h1 {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.7;
+  color: $color-white;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid rgba($color-white, 0.2);
+}
+
+.detail-h2 {
+  flex: 1;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 1.7;
+  color: $color-white;
+}
+
+.detail-h3 {
+  flex: 1;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 1.7;
+  color: $color-white;
+  margin-top: 1rem;
+}
+
+.detail-p {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: $color-white;
+  margin-top: 1rem;
+}
+
+.detail-p-title {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: rgba($color-white, 0.7);
+}

@@ -1,0 +1,207 @@
+<html lang="en">
+
+<head>
+  <!-- 동행 리스트 페이지 **********************************
+    1. 제이쿼리를 이용한 탭메뉴
+    2. qna는 데이터와 연계한 아코디언 메뉴로 구현
+    3. label에 trigger click 발생
+  ************************************************* -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Nanum+Gothic:400,700&amp;subset=korean" rel="stylesheet">>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/jquery.js"></script>
+
+  <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>
+  <title>혼행</title>
+</head>
+
+<body>
+  <main>
+    <div class="header-container-white">
+      <div class="header">
+        <div class="header__left">
+          <a href="../index.html">
+            <img src="../img/logo-black.png" alt="logo" class="header__logo-black">
+          </a>
+        </div>
+        <div class="header__right">
+          <div class="header__right-button">
+            <a href="./signin.html" class="heading-english state-signin">LOGIN
+              <img src="../img/down-arrow-black.png" alt="icon" class="header__icon">
+            </a>
+          </div>
+          <div class="header__right-button">
+            <a href="#" onclick="signout()" class="heading-english state-signout">LOGOUT
+              <img src="../img/down-arrow-black.png" alt="icon" class="header__icon">
+            </a>
+          </div>
+          <div class="header__right-button header__box header__box--black"></div>
+          <div class="header__right-button">
+            <a href="#" onclick="isSignIn()" class="heading-english heading-english--primary-dark">MAKE DONGHANG</a>
+          </div>
+          <div class="header__right-button">
+            <a href="#" class="heading-english boardAll">DONGHANG LIST</a>
+          </div>
+          <div class="header__right-button header__box header__box--black"></div>
+          <div class="header__right-button">
+            <a href="../index.html" class="heading-english">LOCAL MENTOR</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <section class="section-back-nav"></section>
+
+  <section class="section-title">
+    <div class="heading-primary heading-primary--white">자주 묻는 질문과 답변</div>
+  </section>
+
+  <section class="section-makeup">
+    <div class="small-nav">
+      <div class=nav-row>
+        <div class="nav-row__pages para para--bold">홈</div>
+        <div class="nav-row__pages ssmall-para u-margin-top-1">&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;</div>
+        <div class="nav-row__pages para para--bold">Q&A</div>
+      </div>
+    </div>
+    <div class="test"></div>
+  </section>
+
+  <div class="section-qna">
+    <div class="qna">
+      <ul class="qna__menu-all">
+        <li class="qna__menu heading-secondary qna__menu-on">
+          질문카테고리1
+        </li>
+        <li class="qna__menu heading-secondary">
+          질문카테고리2
+        </li>
+        <li class="qna__menu heading-secondary">
+          질문카테고리3
+        </li>
+        <li class="qna__menu heading-secondary">
+          질문카테고리4
+        </li>
+        <li class="qna__menu heading-secondary">
+          질문카테고리5
+        </li>
+      </ul>
+      <div>
+        <ul class="qna__list">
+          <li class="qna__list-item">
+            <div class="qna__list-title heading-tertiary">
+              질문1
+            </div>
+            <div class="qna__content para">
+              <p class="selectedContent">답변1</p>
+            </div>
+          </li>
+        </ul>
+        <ul class="qna__list">
+          <li class="qna__list-item">
+            <div class="qna__list-title heading-tertiary">
+              질문1
+            </div>
+            <div class="qna__content para">
+              <p class="selectedContent">답변1</p>
+            </div>
+          </li>
+        </ul>
+        <ul class="qna__list">
+          <li class="qna__list-item">
+            <div class="qna__list-title heading-tertiary">
+              질문1
+            </div>
+            <div class="qna__content para">
+              <p class="selectedContent">답변1</p>
+            </div>
+          </li>
+        </ul>
+        <ul class="qna__list">
+          <li class="qna__list-item">
+            <div class="qna__list-title heading-tertiary">
+              질문1
+            </div>
+            <div class="qna__content para">
+              <p class="selectedContent">답변1</p>
+            </div>
+          </li>
+        </ul>
+        <ul class="qna__list">
+          <li class="qna__list-item">
+            <div class="qna__list-title heading-tertiary">
+              질문1
+            </div>
+            <div class="qna__content para">
+              <p class="selectedContent">답변1</p>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class=footer>
+    <div class="row">
+      <div class="col-1-of-4">
+        <img src="../img/logo-white.png" alt="logo" class="footer__logo">
+      </div>
+      <div class="col-1-of-4">
+        <ul class="footer__list">
+          <li class="footer__list-item">
+            <span class="footer__title">혼행 대표 :</span> 허준혁</li>
+          <li class="footer__list-item">
+            <span class="footer__title">개인정보관리책임자 :</span> 허준혁</li>
+          <li class="footer__list-item">
+            <span class="footer__title">사업자등록번호 :</span> 000-00-00000</li>
+          <li class="footer__list-item">
+            <span class="footer__title">통신판매업신고 :</span> 2018-서울강남-00000</li>
+          <li class="footer__list-item">
+            <span class="footer__title">주소 :</span> 인천광역시 연수구 선학로 101</li>
+          <li class="footer__list-item">2018 &copy;Copyright Honhang. ALL right reserved</li>
+        </ul>
+      </div>
+      <div class="col-1-of-4">
+        <ul class="footer__list">
+          <li class="footer__title">CONTACT US</li>
+          <li class="footer__list-item">010-6495-8078</li>
+          <li class="footer__list-item">AM 10:00 ~ PM 6:00</li>
+          <li class="footer__list-item">제휴문의 gjwnsgur91@naver.com</li>
+          <li class="footer__title">BANK INFO</li>
+          <li class="footer__list-item">
+            국민 660402-01-513947 예금주 허준혁
+          </li>
+        </ul>
+      </div>
+      <div class="col-1-of-4">
+        <ul class="footer__list">
+          <li class="footer__title">INFOMATION</li>
+          <li class="footer__list-item">
+            <a href="#" class="footer__list-item footer__link">회사소개</a>
+          </li>
+          <li class="footer__list-item">
+            <a href="../pages/qna.html" class="footer__list-item footer__link">QnA</a>
+          </li>
+          <li class="footer__list-item">
+            <a href="#" class="footer__list-item footer__link">서비스 이용약관</a>
+          </li>
+          <li class="footer__list-item">
+            <a href="#" class="footer__list-item footer__link">개인정보 취급정책</a>
+          </li>
+          <li class="footer__list-item">
+            <a href="#" class="footer__list-item footer__link">운영정책</a>
+          </li>
+        </ul>
+      </div>
+  </footer>
+
+  <script src="../js/firebase.js"></script>
+  <script type="text/javascript" src="../js/qna.js"></script>
+
+</body>
+
+</html>

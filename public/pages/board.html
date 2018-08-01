@@ -1,0 +1,158 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Nanum+Gothic:400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/jquery.js"></script>
+  <!-- date picker API -->
+  <link rel="stylesheet" href="../css/datepicker.css">
+  <script src="../js/datepicker.js"></script>
+  <!-- time picker API -->
+  <link rel="stylesheet" href="../node_modules/jquery-timepicker/jquery.timepicker.css">
+  <script src="../node_modules/jquery-timepicker/jquery.timepicker.js"></script>
+  <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>
+  <title>혼행</title>
+</head>
+
+<body>
+  <main class="main main-board">
+
+    <div class="bg-image">
+      <img src="../img/board-back.jpg" alt="board-back" class="board__back">
+    </div>
+    <div class="header-container">
+      <div class="header">
+        <div class="header__left">
+          <a href="../index.html">
+            <img src="../img/logo-white.png" alt="logo" class="header__logo">
+          </a>
+        </div>
+        <div class="header__right">
+          <div class="header__right-button">
+            <a href="./signin.html" class="heading-english heading-english--white state-signin">LOGIN
+              <img src="../img/down-arrow.png" alt="icon" class="header__icon">
+            </a>
+          </div>
+          <div class="header__right-button">
+            <a href="#" onclick="signout()" class="heading-english heading-english--white state-signout">LOGOUT
+              <img src="../img/down-arrow.png" alt="icon" class="header__icon">
+            </a>
+          </div>
+          <div class="header__right-button header__box"></div>
+          <div class="header__right-button">
+            <a href="#" onclick="isSignIn()" class="heading-english heading-english--primary">MAKE DONGHANG</a>
+          </div>
+          <div class="header__right-button">
+            <a href="#" class="heading-english heading-english--white boardAll">DONGHANG LIST</a>
+          </div>
+          <div class="header__right-button header__box"></div>
+          <div class="header__right-button scrollNavi-category">
+            <a href="../index.html" class="heading-english heading-english--white">LOCAL MENTOR</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 로딩 모듈 -->
+    <div class="loading">
+      <div class="loading__container">
+        <div class="loading__circle loading__color1"></div>
+        <div class="loading__circle loading__color2"></div>
+        <div class="loading__circle loading__color3"></div>
+      </div>
+    </div>
+    <!-- 팝업 -->
+    <div class="small-popup" id="small-popup">
+      <div class="small-popup__content">
+        <img src="../img/icon-info.png" alt="icon-info" class="small-popup__icon">
+        <h2 class="small-popup__text para"></h2>
+      </div>
+    </div>
+
+    <!-- 재검색 네비게이션바 -->
+    <div class="re-search">
+
+      <div class="side-nav down">
+        <div class="heading-english heading-english--white side-nav__box">
+          <img src="../img/down-arrow.png" alt="down-arrow" class="side-nav__icon"> SEARCH
+        </div>
+      </div>
+      <div class="re-search__bar">
+        <label for="selectedPlace" class="re-search__label para para--white">여행지</label>
+        <input type="text" class="re-search__input" id="selectedPlace" placeholder="에펠탑" autocomplete="off">
+      </div>
+      <div class="re-search__bar">
+        <label for="selectedCity" class="re-search__label para para--white">도시</label>
+        <input type="text" class="re-search__input" id="selectedCity" placeholder="파리" autocomplete="off">
+      </div>
+      <div class="re-search__bar">
+        <label for="selectedDate" class="re-search__label para para--white">날짜</label>
+        <input type="text" class="re-search__input" id="selectedDate" placeholder="2020/07/19" readonly></input>
+      </div>
+      <div class="re-search__bar">
+        <label for="selectedTIme" class="re-search__label para para--white">시간</label>
+        <input class="re-search__input" id="selectedTIme" placeholder="8:00 AM" readonly>
+      </div>
+      <div class="re-search__bar">
+        <label for="selectedHowMany" class="re-search__label para para--white">최대인원</label>
+        <select id="selectedHowMany" class="re-search__input" required>
+          <option value="" disabled selected hidden>0명</option>
+          <option value="2">2명</option>
+          <option value="3">3명</option>
+          <option value="4">4명</option>
+          <option value="5">5명</option>
+          <option value="6">6명</option>
+          <option value="7">7명</option>
+          <option value="8">8명</option>
+          <option value="9">9명</option>
+        </select>
+      </div>
+      <button class="btn btn--color-reSearch" id="searchButton">검색</button>
+    </div>
+
+    <section class="section-board">
+
+      <div class="sort-tap">
+        <div class="sort-tap__box on">
+          <a href="#" class="heading-english heading-english--white">ALL</a>
+        </div>
+        <div class="sort-tap__box">
+          <a href="#" class="heading-english heading-english--white">PEOPLE</a>
+        </div>
+        <div class="sort-tap__box">
+          <a href="#" class="heading-english heading-english--white">MENTO</a>
+        </div>
+      </div>
+
+      <div class="board">
+        <ul class="board__list">
+          <p class="board__total small-para"></p>
+          <!-- 자바스크립트로 엘리먼트 생성된 DOM엘리먼트 위치 -->
+        </ul>
+      </div>
+      <div class="detail">
+        <div class="detail__modal">
+          <div class="kakao-profile-back"></div>
+          <div class="kakao-profile">
+            <div class="kakao-profile__id"></div>
+            <div class="kakao-profile__closer">
+              뒤로
+            </div>
+          </div>
+          <!-- 자바스크립트로 엘리먼트 생성된 DOM엘리먼트 위치 -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="../js/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+  <script type="text/javascript" src="../js/board.js"></script>
+
+</body>
+
+</html>

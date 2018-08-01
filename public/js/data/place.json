@@ -1,0 +1,7 @@
+[ 
+  {"name": "에펠탑", "engName": "Eiffel Tower", "code": "Eiffel Tower"}, 
+  {"name": "남산 타워", "engName": "Namsan Tower", "code": "Namsan Tower"}, 
+  {"name": "런던아이", "engName": "London Eye", "code": "London Eye"}, 
+  {"name": "엠파이어 스테이트 빌딩", "engName": "Empire State", "code": "Empire State"}, 
+  {"name": "오페라하우스", "engName": "Opera House", "code": "Opera House"}
+ ]

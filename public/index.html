@@ -1,0 +1,295 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="8e47921fa9686759c6ac4558e523eea4feeb26d0"/>
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="혼자 여행하는데 필요한 정보과 팁, 그리고 동행 매칭을 제공합니다.">
+  <link rel="stylesheet" href="./css/icon-font.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Nanum+Gothic:400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/jquery.js"></script>
+  <!-- date picker API -->
+  <link rel="stylesheet" href="./css/datepicker.css">
+  <script src="./js/datepicker.js"></script>
+  <!-- time picker API -->
+  <link rel="stylesheet" href="./node_modules/jquery-timepicker/jquery.timepicker.css">
+  <script src="./node_modules/jquery-timepicker/jquery.timepicker.js"></script>
+
+  <title>혼행_혼자아닌여행</title>
+</head>
+
+<body>
+  <main class="main">
+    <div class="bg-image">
+      <img src="./img/main_1.jpg" alt="background_main_1" class="bg-image__pic">
+      <img src="./img/main_2.jpg" alt="background_main_1" class="bg-image__pic">
+      <img src="./img/main_3.jpg" alt="background_main_1" class="bg-image__pic">
+    </div>
+    <div class="header-container">
+      <div class="header">
+        <div class="header__left">
+          <a href="index.html">
+            <img src="./img/logo-white.png" alt="logo" class="header__logo">
+          </a>
+        </div>
+        <div class="header__right">
+          <div class="header__right-button">
+            <a href="./pages/signin.html" class="heading-english heading-english--white state-signin">LOGIN
+              <img src="./img/down-arrow.png" alt="icon" class="header__icon">
+            </a>
+          </div>
+          <div class="header__right-button">
+            <a href="#" onclick="signoutMain()" class="heading-english heading-english--white state-signout">LOGOUT
+              <img src="./img/down-arrow.png" alt="icon" class="header__icon">
+            </a>
+          </div>
+          <div class="header__right-button header__box"></div>
+          <div class="header__right-button">
+            <a href="#" onclick="isSignIn()" class="heading-english heading-english--primary">MAKE DONGHANG</a>
+          </div>
+          <div class="header__right-button">
+            <a href="#" class="heading-english heading-english--white boardAll">DONGHANG LIST</a>
+          </div>
+          <div class="header__right-button header__box"></div>
+          <div class="header__right-button scrollNavi-category">
+            <a href="#" class="heading-english heading-english--white">LOCAL MENTOR</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="search">
+      <div class="search__text">
+        <h1 class="heading-primary heading-primary--white">외롭지않은 나홀로 여행, 동행을 찾아보세요.</h1>
+      </div>
+      <div class="search__container">
+        <div class="row">
+          <div class="col-1-of-2">
+            <div class="search-bar">
+              <label for="selectedPlace" class="search__label">여행지</label>
+              <input type="text" class="search-bar__input" id="selectedPlace" placeholder="에펠탑" autocomplete="off">
+            </div>
+          </div>
+          <div class="col-1-of-2">
+            <div class="search-bar">
+              <label for="selectedCity" class="search__label">도시</label>
+              <input type="text" class="search-bar__input" id="selectedCity" placeholder="파리" autocomplete="off">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-1-of-4">
+            <div class="search-bar">
+              <label for="selectedDate" class="search__label">날짜</label>
+              <input type="text" class="search-bar__input" id="selectedDate" placeholder="2020/07/19" readonly></input>
+            </div>
+          </div>
+          <div class="col-1-of-4">
+            <div class="search-bar">
+              <label for="selectedTIme" class="search__label">시간</label>
+              <input class="search-bar__input" id="selectedTIme" placeholder="8:00 AM" readonly>
+            </div>
+          </div>
+          <div class="col-1-of-4">
+            <div class="search-bar">
+              <label for="selectedHowMany" class="search__label">최대인원</label>
+              <select id="selectedHowMany" class="search-bar__input" required>
+                <option value="" disabled selected hidden>0명</option>
+                <option value="2">2명</option>
+                <option value="3">3명</option>
+                <option value="4">4명</option>
+                <option value="5">5명</option>
+                <option value="6">6명</option>
+                <option value="7">7명</option>
+                <option value="8">8명</option>
+                <option value="9">9명</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-1-of-4">
+            <label for="searchButton" class="search__label"> &nbsp;</label>
+            <button class="btn btn--color-full" id="searchButton">검색</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <section class="section-intro" id="section-intro">
+    <div class="intro">
+      <div class="small-para u-margin-bottom-1"><strong>일상에 지친 내가</strong></div>
+      <div class="heading-primary u-margin-bottom-4">
+        혼자 떠나는, 혼자가 아닌 여행.
+      </div>
+      <div class="sub-para u-margin-bottom-4">
+        '혼행'은 2018년 트렌드 키워드로 주위 사람들에게서 벗어나 조용한 시간을 보내기 위해 홀로 여행을 떠나는 것을 말합니다. 일행의 눈치를 볼 필요도 없고, 내 방식대로 여행할 수 있다는 장점이 있죠.
+        <br>
+        <br>
+        이러한 트렌트에 맞춰 혼행 서비스는 믿을 수 있는 동행매칭과 현지멘토매칭 그리고 홀로 여행을 위한 실시간 여행정보와 팁을 제공하여 고객님이 안전한 혼행을 다녀오시는 것을 목표로 하고 있습니다.
+      </div>
+      <div class="heading-tertiary heading-tertiary--bold">"그러니 혼행을 두려워하지마세요. 분명 좋은 여행이 될거에요."</div>
+    </div>
+  </section>
+  <section class="section-category" id="section-category">
+    <div class="category">
+      <div class="small-para"><strong>Honhang's main service</strong></div>
+      <div class="heading-tertiary heading-tertiary--bold">혼행 주요 서비스 소개</div>
+    </div>
+
+    <div class="row">
+      <div class="col-1-of-3">
+        <div class="card">
+          <div class="card__side card__side--front">
+            <div class="card__picture card__picture--1">
+              &nbsp;
+            </div>
+            <h4 class="card__heading">
+              <span class="card__heading--span">로컬 멘토 리스트.</span>
+            </h4>
+          </div>
+          <div class="card__side card__side--back card__side--back-1">
+            <div class="card__cta">
+              <a href="#popup" class="btn btn--white">더보기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1-of-3">
+        <div class="card">
+          <div class="card__side card__side--front">
+            <div class="card__picture card__picture--2">
+              &nbsp;
+            </div>
+            <h4 class="card__heading">
+              <span class="card__heading--span">혼행 이야기.</span>
+            </h4>
+          </div>
+          <div class="card__side card__side--back card__side--back-2">
+            <div class="card__cta">
+              <a href="#popup" class="btn btn--white">더보기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1-of-3">
+        <div class="card">
+          <div class="card__side card__side--front">
+            <div class="card__picture card__picture--3">
+              &nbsp;
+            </div>
+            <h4 class="card__heading">
+              <span class="card__heading--span">여행 경보.</span>
+            </h4>
+          </div>
+          <div class="card__side card__side--back card__side--back-3">
+            <div class="card__cta">
+              <a href="http://www.0404.go.kr/dev/main.mofa" class="btn btn--white">더보기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-social" id="section-social">
+    <div class="row">
+      <div class="col-1-of-3">
+        <a href="#" class="social">
+          <img src="./img/facebook-black.png" alt="facebook-black" class="social__logo">
+          <h2>FACEBOOK</h2>
+        </a>
+      </div>
+      <div class="col-1-of-3">
+        <a href="#" class="social">
+          <img src="./img/insta-black.png" alt="insta-black" class="social__logo">
+          <h2>INSTAGRAM</h2>
+        </a>
+      </div>
+      <div class="col-1-of-3">
+        <a href="#" class="social">
+          <img src="./img/kakao-black.png" alt="kakao-black" class="social__logo">
+          <h2>KAKAO</h2>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 팝업 -->
+  <div class="popup" id="popup">
+    <div class="popup__content">
+      <a href="#section-category" class="popup__closer">&times;</a>
+      <h2 class="popup__text heading-secondary">서비스 준비중입니다.</h2>
+    </div>
+  </div>
+  <!-- 팝업 -->
+  <div class="small-popup" id="small-popup">
+    <div class="small-popup__content">
+      <img src="./img/icon-info.png" alt="icon-info" class="small-popup__icon">
+      <h2 class="small-popup__text para"></h2>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="row">
+      <div class="col-1-of-4">
+        <img src="./img/logo-white.png" alt="logo" class="footer__logo">
+      </div>
+      <div class="col-1-of-4">
+        <ul class="footer__list">
+          <li class="footer__list-item">
+            <span class="footer__title">혼행 대표 :</span> 허준혁</li>
+          <li class="footer__list-item">
+            <span class="footer__title">개인정보관리책임자 :</span> 허준혁</li>
+          <li class="footer__list-item">
+            <span class="footer__title">사업자등록번호 :</span> 000-00-00000</li>
+          <li class="footer__list-item">
+            <span class="footer__title">통신판매업신고 :</span> 2018-서울강남-00000</li>
+          <li class="footer__list-item">
+            <span class="footer__title">주소 :</span> 인천광역시 연수구 선학로 101</li>
+          <li class="footer__list-item">2018 &copy;Copyright Honhang. ALL right reserved</li>
+        </ul>
+      </div>
+      <div class="col-1-of-4">
+        <ul class="footer__list">
+          <li class="footer__title">CONTACT US</li>
+          <li class="footer__list-item">010-6495-8078</li>
+          <li class="footer__list-item">AM 10:00 ~ PM 6:00</li>
+          <li class="footer__list-item">제휴문의 gjwnsgur91@naver.com</li>
+          <li class="footer__title">BANK INFO</li>
+          <li class="footer__list-item">
+            국민 660402-01-513947 예금주 허준혁
+          </li>
+        </ul>
+      </div>
+      <div class="col-1-of-4">
+        <ul class="footer__list">
+          <li class="footer__title">INFOMATION</li>
+          <li class="footer__list-item">
+            <a href="#" class="footer__list-item footer__link">회사소개</a>
+          </li>
+          <li class="footer__list-item">
+            <a href="./pages/qna.html" class="footer__list-item footer__link">QnA</a>
+          </li>
+          <li class="footer__list-item">
+            <a href="#" class="footer__list-item footer__link">서비스 이용약관</a>
+          </li>
+          <li class="footer__list-item">
+            <a href="#" class="footer__list-item footer__link">개인정보 취급정책</a>
+          </li>
+          <li class="footer__list-item">
+            <a href="#" class="footer__list-item footer__link">운영정책</a>
+          </li>
+        </ul>
+      </div>
+  </footer>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>
+  <script src="./js/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+  <script type="text/javascript" src="./js/index.js"></script>
+  <script>
+  </script>
+</body>
+
+</html>

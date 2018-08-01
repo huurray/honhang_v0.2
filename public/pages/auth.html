@@ -1,0 +1,223 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Nanum+Gothic:400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/jquery.js"></script>
+  <!-- date picker API -->
+  <link rel="stylesheet" href="../css/datepicker.css">
+  <script src="../js/datepicker.js"></script>
+  <!-- time picker API -->
+  <link rel="stylesheet" href="../node_modules/jquery-timepicker/jquery.timepicker.css">
+  <script src="../node_modules/jquery-timepicker/jquery.timepicker.js"></script>
+
+  <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+  <title>혼행</title>
+</head>
+
+<body>
+  <main>
+    <div class="header-container-white">
+      <div class="header">
+        <div class="header__left">
+          <a href="../index.html">
+            <img src="../img/logo-black.png" alt="logo" class="header__logo-black">
+          </a>
+        </div>
+        <div class="header__right">
+          <div class="header__right-button">
+            <a href="./signin.html" class="heading-english state-signin">LOGIN
+              <img src="../img/down-arrow-black.png" alt="icon" class="header__icon">
+            </a>
+          </div>
+          <div class="header__right-button">
+            <a href="#" onclick="signout()" class="heading-english state-signout">LOGOUT
+              <img src="../img/down-arrow-black.png" alt="icon" class="header__icon">
+            </a>
+          </div>
+          <div class="header__right-button header__box header__box--black"></div>
+          <div class="header__right-button">
+            <a href="#" onclick="isSignIn()" class="heading-english heading-english--primary-dark">MAKE DONGHANG</a>
+          </div>
+          <div class="header__right-button">
+            <a href="#" class="heading-english boardAll">DONGHANG LIST</a>
+          </div>
+          <div class="header__right-button header__box header__box--black"></div>
+          <div class="header__right-button">
+            <a href="../index.html" class="heading-english">LOCAL MENTOR</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <section class="section-back-nav"></section>
+
+  <section class="section-title">
+    <div class="heading-primary heading-primary--white">안전한 동행인 인증하기</div>
+  </section>
+
+  <section class="section-makeup">
+    <div class="small-nav">
+      <div class=nav-row>
+        <div class="nav-row__pages para para--bold">홈</div>
+        <div class="nav-row__pages small-para u-margin-top-1">&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;</div>
+        <div class="nav-row__pages para para--bold">신원 인증</div>
+      </div>
+    </div>
+    <div class="makeup-progress">
+      <div class="makeup-progress__text heading-big">
+        Authentication
+      </div>
+      <div class="makeup-progress__text--small para para--bold" style="color: #FF5A4D;">
+        본 인증은 최초 한번만 진행됩니다!
+      </div>
+
+      <div class="makeup-progress__ing">
+        <div class="makeup-progress__icon-box">
+          <img src="../img/icon-id-active.png" alt="icon-id" class="makeup-progress__icon">
+          <p class="para para--bold">신원 증명</p>
+        </div>
+        <div class="makeup-progress__icon-box">
+          <img src="../img/icon-document.png" alt="icon-document" class="makeup-progress__icon">
+          <p class="para para--bold">동행 정보 작성</p>
+        </div>
+        <div class="makeup-progress__icon-box">
+          <img src="../img/icon-schedule.png" alt="icon-schedule" class="makeup-progress__icon">
+          <p class="para para--bold">커뮤니티 등록</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth">
+      <div class="auth__form">
+        <h2 class="auth__text para">이름</h2>
+        <input type="text" class="auth__input para para--bold" id="myName" placeholder="이름을 입력해주세요." autocomplete="off" required>
+      </div>
+      <div class="auth__form">
+        <h2 class="auth__text para">나이</h2>
+        <input type="text" class="auth__input para para--bold" id="myAge" placeholder="나이를 입력해주세요." autocomplete="off" required>
+      </div>
+      <div class="auth__form">
+        <h2 class="auth__text para">거주도시</h2>
+        <input type="text" class="auth__input para para--bold" id="myCity" placeholder="거주도시를 입력해주세요." autocomplete="off" required>
+      </div>
+      <div class="auth__form">
+        <h2 class="auth__text para">휴대폰번호</h2>
+        <input type="text" class="auth__input para para--bold" id="myPhone" placeholder="- 없이 숫자만 입력해주세요." autocomplete="off" required>
+      </div>
+      <div class="auth__form">
+        <h2 class="auth__text para">카카오톡 아이디 :</h2>
+        <input type="text" class="auth__input para para--bold" id="myKakaoId" placeholder="내 카카오톡 ID" autocomplete="off"
+          required>
+      </div>
+      <div class="auth__form">
+        <h2 class="auth__text para">이메일 인증</h2>
+        <input type="email" class="auth__input para para--bold" id="myEmail" placeholder="이메일을 입력해주세요." readonly>
+        <button class="auth__email-button btn-simple para">인증 메일 보내기</button>
+        <p class="auth__conform auth__conform-email"></p>
+      </div>
+      <div class="auth__form">
+        <h2 class="auth__text para">카카오 프로필 연동</h2>
+        <a id="kakao-login-btn"></a>
+        <p class="auth__conform auth__conform-kakao"></p>
+      </div>
+      <div class="auth__form">
+        <input type="checkbox" class="auth__checkbox" id="auth-agree1">
+        <label for="auth-agree1" class="auth__label para">이용약관 동의</label>
+        <a href="#" class="auth__agree-content">내용보기</a>
+      </div>
+      <div class="auth__form">
+        <input type="checkbox" class="auth__checkbox" id="auth-agree2">
+        <label for="auth-agree2" class="auth__label para">개인정보 수집 및 이용에 대한 동의</label>
+        <a href="#" class="auth__agree-content">내용보기</a>
+      </div>
+      <div class="auth__form">
+        <input type="checkbox" class="auth__checkbox" id="auth-agree3">
+        <label for="auth-agree3" class="auth__label para">개인정보 수집 및 이용안내</label>
+        <a href="#" class="auth__agree-content">내용보기</a>
+      </div>
+      <div class="auth__form auth__form--back">
+        <input type="checkbox" class="auth__checkbox" id="auth-agree4">
+        <label for="auth-agree4" class="auth__label para">사이트 이용을 위한 이용약관, 개인정보 수집 및 이용에 모두 동의합니다.</label>
+      </div>
+      <div class="auth__buttons">
+        <button class="btn btn--white-small" id="backButton">취소</button>
+        <button class="btn btn--color-small" id="authButton">다음</button>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="small-popup" id="small-popup">
+    <div class="small-popup__content">
+      <img src="../img/icon-info.png" alt="icon-info" class="small-popup__icon">
+      <h2 class="small-popup__text para"></h2>
+    </div>
+  </div>
+
+  <footer class=footer>
+    <div class="row">
+      <div class="col-1-of-4">
+        <img src="../img/logo-white.png" alt="logo" class="footer__logo">
+      </div>
+      <div class="col-1-of-4">
+        <ul class="footer__list">
+          <li class="footer__list-item">
+            <span class="footer__title">혼행 대표 :</span> 허준혁</li>
+          <li class="footer__list-item">
+            <span class="footer__title">개인정보관리책임자 :</span> 허준혁</li>
+          <li class="footer__list-item">
+            <span class="footer__title">사업자등록번호 :</span> 000-00-00000</li>
+          <li class="footer__list-item">
+            <span class="footer__title">통신판매업신고 :</span> 2018-서울강남-00000</li>
+          <li class="footer__list-item">
+            <span class="footer__title">주소 :</span> 인천광역시 연수구 선학로 101</li>
+          <li class="footer__list-item">2018 &copy;Copyright Honhang. ALL right reserved</li>
+        </ul>
+      </div>
+      <div class="col-1-of-4">
+        <ul class="footer__list">
+          <li class="footer__title">CONTACT US</li>
+          <li class="footer__list-item">010-6495-8078</li>
+          <li class="footer__list-item">AM 10:00 ~ PM 6:00</li>
+          <li class="footer__list-item">제휴문의 gjwnsgur91@naver.com</li>
+          <li class="footer__title">BANK INFO</li>
+          <li class="footer__list-item">
+            국민 660402-01-513947 예금주 허준혁
+          </li>
+        </ul>
+      </div>
+      <div class="col-1-of-4">
+        <ul class="footer__list">
+          <li class="footer__title">INFOMATION</li>
+          <li class="footer__list-item">
+            <a href="#" class="footer__list-item footer__link">회사소개</a>
+          </li>
+          <li class="footer__list-item">
+            <a href="../pages/qna.html" class="footer__list-item footer__link">QnA</a>
+          </li>
+          <li class="footer__list-item">
+            <a href="#" class="footer__list-item footer__link">서비스 이용약관</a>
+          </li>
+          <li class="footer__list-item">
+            <a href="#" class="footer__list-item footer__link">개인정보 취급정책</a>
+          </li>
+          <li class="footer__list-item">
+            <a href="#" class="footer__list-item footer__link">운영정책</a>
+          </li>
+        </ul>
+      </div>
+  </footer>
+
+  <script src="../js/firebase.js"></script>
+  <script type="text/javascript" src="../js/auth.js"></script>
+
+</body>
+
+</html>

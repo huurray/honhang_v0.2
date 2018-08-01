@@ -1,0 +1,7 @@
+[ 
+  {"name": "파리", "country": "France", "code": "paris"}, 
+  {"name": "서울", "country": "South Korea", "code": "seoul"}, 
+  {"name": "런던", "country": "UK", "code": "london"}, 
+  {"name": "뉴욕", "country": "US", "code": "newyork"}, 
+  {"name": "시드니", "country": "Austrailia", "code": "sydney"}
+ ]
