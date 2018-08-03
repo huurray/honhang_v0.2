@@ -1,3 +1,35 @@
+//상태체크
+
+function stateMenu() {
+  $('.header__state-menu').on('click', function () {
+    if ($('.header__state-menu').hasClass('menuOn')) {
+
+      $('.header__current-state').css("opacity", "0");
+
+      if($('.header__icon-arrow').attr("src") == "../img/up-arrow.png"){
+        $('.header__icon-arrow').attr("src", "../img/down-arrow.png");
+      } else if ($('.header__icon-arrow').attr("src") == "../img/up-arrow-black.png"){
+        $('.header__icon-arrow').attr("src", "../img/down-arrow-black.png");
+      }
+
+      $('.header__state-menu').removeClass('menuOn');
+    } else {
+
+      $('.header__current-state').css("opacity", "1");
+      
+      if($('.header__icon-arrow').attr("src") == "../img/down-arrow.png"){
+        $('.header__icon-arrow').attr("src", "../img/up-arrow.png");
+      } else if ($('.header__icon-arrow').attr("src") == "../img/down-arrow-black.png"){
+        $('.header__icon-arrow').attr("src", "../img/up-arrow-black.png");
+      }
+
+      $('.header__state-menu').addClass('menuOn');
+    }
+  })
+}
+stateMenu();
+
+
 // Auth
 function isSignIn() {
   var user = firebase.auth().currentUser;
@@ -206,6 +238,7 @@ Kakao.Auth.createLoginButton({
         kakaoKeyId = res.id;
         kakaoProfileImage = res.properties.profile_image;
         kakaoThumbImage = res.properties.thumbnail_image;
+        console.log(res.properties.profile_image)
       },
       fail: function(error) {
         console.log(JSON.stringify(error));
@@ -216,3 +249,13 @@ Kakao.Auth.createLoginButton({
     console.log(JSON.stringify(err));
   }
 });
+
+//약관 내용보기 window.open
+$('.auth-agreement').on('click', function(){
+  event.preventDefault();
+  window.open("./agreement.html");
+})
+$('.auth-privacy').on('click', function(){
+  event.preventDefault();
+  window.open("./privacy.html");
+})

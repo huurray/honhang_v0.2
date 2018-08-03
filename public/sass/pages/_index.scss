@@ -1,3 +1,38 @@
+.isIE {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: $color-grey-light-1;
+  z-index: 1000;
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 40%;
+    border-radius: 3px;
+    background-color: $color-white;
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.1);
+    transform: translate(-50%, -50%);
+  }
+  &__img {
+    display: block;
+    margin: 50px auto;
+    width: 200px;
+    height: auto;
+    
+  }
+  &__text {
+    font-size: 20px;
+    text-align: center;
+    
+    line-height: 2;
+  }
+}
+
 .state-signout {
   display: none;
 }
@@ -6,6 +41,7 @@
   width: 100%;
   height: 100vh;
   position: relative;
+  
 }
 
 .section-intro {
@@ -19,7 +55,7 @@
   width: 100%;
   height: 70rem;
   background-color: $color-grey-light-1;
-  padding-top: 7rem;
+  padding-top: 5rem;
 }
 
 .section-social {
@@ -53,16 +89,15 @@
   top: 0;
   left: 0;
   z-index: 99;
-  
   &.scrolled {
     background-color: $color-white !important;
     transition: background-color 0.15s linear;
     box-shadow: 0 0.5rem 1.5rem rgba($color-black, 0.1);
-    & .heading-english--white {
+    & .heading-korean--white {
       color: $color-black !important;
     }
-    & .heading-english--primary {
-      color: $color-primary-dark !important;
+    & .heading-korean--primary {
+      color: $color-primary !important;
     }
     & .header__box {
       background-color: $color-black !important;
@@ -90,15 +125,13 @@
   }
   &__right {
     &-button {
-      float: right;
       padding-top: 1rem;
+      float: right;
       transition: transform .2s;
       &:not(:first-child) {
         margin-right: 3rem;
       }
-      &:hover {
-        transform: translateY(-.3rem);
-      }
+      position: relative;
     }
   }
   &__logo {
@@ -122,9 +155,40 @@
     margin-left: 0.2rem;
     padding-top: 0.4rem;
     width: 1.5rem;
-    height: 1.5rem;
+    height: auto;
+  }
+  &__icon-arrow {
+    margin-left: 0.2rem;
+    width: 1.15rem;
+    height: auto;
+  }
+  &__state-menu {
+    width: 12rem;
+    height: 5rem;
+    cursor: pointer;
+  }
+  &__current-state {
+    position: absolute;
+    top: 80%;
+    opacity: 0;
+    width: 12rem;
+    height: 5rem;
+    background-color: $color-white;
+    box-shadow: 0 0.3rem 0.7rem rgba($color-black, 0.1);
+    border: 1px solid $color-grey-light-2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    z-index: -99 !important;
+    padding-left: 1.5rem;
+
+    &:hover {
+      background-color: $color-grey-light-1;
+    }
   }
 }
+
 
 .search {
   width: 100%;
@@ -151,7 +215,7 @@
 .search-bar {
   width: 100%;
   &__input {
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     padding: 1.5rem 2rem;
     border-radius: 2px;
     background-color: $color-white;
@@ -161,16 +225,14 @@
     display: block;
     transition: all 0.3s;
     color: $color-black;
-    font-family: 'Nanum Gothic', sans-serif;
-
+    font-family: 'Noto Sans KR', sans-serif;
     outline: none;
     box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
-
     &::-webkit-input-placeholder {
-      color: $color-grey-dark;
+      color: $color-grey-light-3;
     }
     &:invalid {
-      color: $color-grey-dark;
+      color: $color-grey-light-3;
     }
   }
 }
@@ -191,13 +253,11 @@
   width: 100%;
   text-decoration: none;
   color: $color-grey-dark-3;
-
   &__logo {
     float: left;
-    margin: 0.7rem 1rem 0 10rem;
+    margin: 0.7rem 1rem 0 7rem;
     width: 2.2rem;
     height: auto;
-
   }
   & h2 {
     float: left;
@@ -211,7 +271,7 @@
   background-color: $color-grey-dark-3;
   width: 100%;
   height: 30rem;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   color: $color-white;
   padding-top: 10rem;
   font-weight: 100;
@@ -219,13 +279,12 @@
     width: 15rem;
     height: auto;
   }
-
   &__list {
     list-style: none;
   }
   &__title {
     color: $color-white;
-    font-weight: 800;
+    font-weight: 500;
   }
   &__list-item {
     color: $color-grey-light-3;
@@ -249,8 +308,6 @@
     }
   }
 }
-
-
 
 @keyframes zoom-in {
   0% {

@@ -6,31 +6,31 @@
   width: 90%;
   height: 100vh;
   margin: 0 auto;
-  padding: 12rem 0;
+  padding: 12rem 0 8rem 0;
   overflow: hidden;
   position: relative;
 }
 
 .re-search {
   position: absolute;
-  bottom: -54rem;
+  bottom: -50rem;
   left: 0;
   width: 30rem;
-  height: 62rem;
-  padding-left: 3.5rem;
+  height: 55rem;
   z-index: 99;
   overflow: hidden;
 
   &__bar {
     width: 100%;
+    opacity: 0;
   }
   &__label {
     display: block;
   }
   &__input {
-    width: 80%;
-    height: 4.5rem;
-    font-size: 1.4rem; 
+    width: 70%;
+    height: 4rem;
+    font-size: 1.35rem; 
     padding: 1rem;
     border-radius: 2px;
     background-color: rgba($color-white, 0.3);
@@ -38,14 +38,14 @@
     display: block;
     transition: all 0.3s;
     color: $color-white;
-    font-family: 'Nanum Gothic', sans-serif;
-    margin-bottom: 2rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-bottom: 1rem;
     outline: none;
     box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
 
 
     &::-webkit-input-placeholder {
-      color: $color-grey-light-3;
+      color: $color-grey-dark;
     }
     &:invalid {
       color: $color-grey-dark;
@@ -54,20 +54,16 @@
 }
 
 .side-nav {
-  margin: 3rem 0;
+  margin: 2rem 0;
   
   &__box {
     width: 100%;
-    cursor: pointer;
     letter-spacing: 0.1rem;
     transition: all .3s;
+    cursor: pointer;
     &:hover {
-      transform: translateY(-0.5rem);
+      transform: translateY(-2px);
     }
-    &:active {
-      transform: translateY(0.5rem);
-    }
-
   }
   &__icon {
     float: left;
@@ -80,20 +76,16 @@
 
 .sort-tap {
   float: left;
-  width: 35%;
+  width: 20%;
   height: 100%;
-  margin-top: 35rem;
-  text-align: right;
-  padding-right: 10rem;
+  text-align: left;
+  position: relative;
+  
   &__box {
     display: inline-block;
     transition: all 0.5s;
     &:not(:last-child) {
       margin-right: 1rem;
-    }
-    &:hover,
-    &:active {
-      transform: translateY(-2px);
     }
     &.on {
       border-bottom: 2px solid $color-white;
@@ -103,7 +95,7 @@
 
 .board {
   float: left;
-  width: 35%;
+  width: 45%;
   position: relative;
   max-height: 100%;
   overflow: auto;
@@ -175,7 +167,7 @@
 
 .detail {
   float: left;
-  width: 30%;
+  width: 35%;
   height: 100%;
   &__modal {
     position: relative;
@@ -193,7 +185,7 @@
     height: 100%;
     display: block;
     padding: 4rem;
-    background-color: rgba($color-white, 0.1);
+    background-color: rgba($color-white, 0.05);
   }
   &__row1 {
     display: flex;
@@ -206,18 +198,20 @@
     left: 4rem;
     bottom: 4rem;
   }
-  &__contact {
-    border-bottom: 2px solid #FFEB00;
-    cursor: pointer;   
-  }
 }
 
-.kakao-title {
-  background-image: url("../img/kakao-yellow.png");
+.kakao-id {
+  cursor: pointer;
+  background-image: url("../img/icon-search-yellow.png");
   background-repeat: no-repeat;
   background-size: contain;
-  padding-left: 2.5rem;
-
+  padding-left: 3rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1.5px solid #FFEB00;
+  display: inline;
+  font-size: 1.7rem !important;
+  font-family: 'Lato', serif;
 }
 
 .kakao-profile {

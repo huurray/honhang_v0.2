@@ -10,6 +10,7 @@ var config = {
 firebase.initializeApp(config);
 
 //상태체크
+
 function stateCheck() {
   let onState = "on"
   document.querySelector('.state-signin').style.display = "block";
@@ -25,7 +26,6 @@ function stateCheck() {
     return onState;
   })
 }
-
 stateCheck();
 
 //로그아웃
@@ -40,4 +40,3 @@ function signoutMain() {
     window.location.replace("./index.html");
   });
 }
-

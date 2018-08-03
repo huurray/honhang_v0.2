@@ -21,18 +21,7 @@
     &--back {
       //state가 180도 회전상태
       transform: rotateY(180deg);
-      // &-1 {
-      //   background-image: url(../img/travel_1.jpg);
-      //   background-size: cover;
-      // }
-      // &-2 {
-      //   background-image: url(../img/travel_2.jpg);
-      //   background-size: cover;
-      // }
-      // &-3 {
-      //   background-image: url(../img/travel_3.jpg);
-      //   background-size: cover;
-      // }
+
     }
   }
   &:hover &__side--front {
@@ -78,12 +67,23 @@
   }
 
   //back style
-  &__cta {
+  &__back {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
+    text-align: center;
+  }
+  &__back-content {
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+  &__button {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
   }
 }

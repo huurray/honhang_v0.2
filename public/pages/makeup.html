@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Nanum+Gothic:400,700&amp;subset=korean" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
   <link rel="stylesheet" href="../css/style.css">
   <script src="../js/jquery.js"></script>
   <!-- date picker API -->
   <link rel="stylesheet" href="../css/datepicker.css">
   <script src="../js/datepicker.js"></script>
   <!-- time picker API -->
-  <link rel="stylesheet" href="../node_modules/jquery-timepicker/jquery.timepicker.css">
-  <script src="../node_modules/jquery-timepicker/jquery.timepicker.js"></script>
+  <link rel="stylesheet" href="../css/timepicker.css">
+  <script src="../js/timepicker.js"></script>
 
   <!-- firebase -->
   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
@@ -30,25 +31,30 @@
         </div>
         <div class="header__right">
           <div class="header__right-button">
-            <a href="./signin.html" class="heading-english state-signin">LOGIN
-              <img src="../img/down-arrow-black.png" alt="icon" class="header__icon">
-            </a>
-          </div>
-          <div class="header__right-button">
-            <a href="#" onclick="signout()" class="heading-english state-signout">LOGOUT
-              <img src="../img/down-arrow-black.png" alt="icon" class="header__icon">
-            </a>
+            <div class="header__state-menu">
+              <div class="heading-korean">
+                <img src="../img/icon-user.png" alt="icon" class="header__icon">
+                <img src="../img/down-arrow-black.png" alt="icon" class="header__icon-arrow">
+              </div>
+            </div>
+            <div class="header__current-state">
+              <a href="./signin.html" class="heading-korean state-signin">
+                로그인
+              </a>
+              <a href="#" onclick="signout()" class="heading-korean state-signout">
+                로그아웃
+              </a>
+            </div>
           </div>
           <div class="header__right-button header__box header__box--black"></div>
           <div class="header__right-button">
-            <a href="#" onclick="isSignIn()" class="heading-english heading-english--primary-dark">MAKE DONGHANG</a>
+            <a href="#" onclick="isSignIn()" class="heading-korean heading-korean--primary-dark">동행 모집</a>
           </div>
           <div class="header__right-button">
-            <a href="#" class="heading-english boardAll">DONGHANG LIST</a>
+            <a href="#" class="heading-korean boardAll">동행 리스트</a>
           </div>
-          <div class="header__right-button header__box header__box--black"></div>
           <div class="header__right-button">
-            <a href="../index.html" class="heading-english">LOCAL MENTOR</a>
+            <a href="../index.html" class="heading-korean">로컬 멘토</a>
           </div>
         </div>
       </div>
@@ -65,7 +71,7 @@
       <div class=nav-row>
         <div class="nav-row__pages para para--bold">홈</div>
         <div class="nav-row__pages small-para u-margin-top-1">&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;</div>
-        <div class="nav-row__pages para para--bold">동행 만들기</div>
+        <div class="nav-row__pages para para--bold">동행 모집</div>
       </div>
     </div>
     <div class="makeup-progress">
@@ -94,27 +100,28 @@
     <div class="makeup">
       <div class="makeup__form">
         <h2 class="makeup__text">제목 :</h2>
-        <input type="text" class="makeup__input para para--bold" id="selectedTitle" placeholder="게시글 제목" autocomplete="off" required>
+        <input type="text" class="makeup__input para" id="selectedTitle" placeholder="게시글 제목" autocomplete="off" required>
       </div>
       <div class="makeup__form">
         <h2 class="makeup__text">여행지 :</h2>
-        <input type="text" class="makeup__input para para--bold" id="selectedPlace" placeholder="에펠탑" autocomplete="off" required>
+        <input type="text" class="makeup__input para" id="selectedPlace" placeholder="에펠탑" autocomplete="off" required>
       </div>
       <div class="makeup__form">
         <h2 class="makeup__text">도시 :</h2>
-        <input type="text" class="makeup__input para para--bold" id="selectedCity" placeholder="파리" autocomplete="off" required>
+        <input type="text" class="makeup__input para" id="selectedCity" placeholder="파리" autocomplete="off" required>
       </div>
       <div class="makeup__form">
         <h2 class="makeup__text">날짜 :</h2>
-        <input type="text" class="makeup__input para para--bold" id="selectedDate" placeholder="2020/07/19" autocomplete="off" required readonly>
+        <input type="text" class="makeup__input para" id="selectedDate" placeholder="2020/07/19" autocomplete="off" required
+          readonly>
       </div>
       <div class="makeup__form">
         <h2 class="makeup__text">시간 :</h2>
-        <input class="makeup__input para para--bold" id="selectedTIme" placeholder="8:00 AM" autocomplete="off" required readonly>
+        <input class="makeup__input para" id="selectedTIme" placeholder="8:00 AM" autocomplete="off" required readonly>
       </div>
       <div class="makeup__form">
         <h2 class="makeup__text">최대인원 :</h2>
-        <select id="selectedHowMany" class="makeup__input para para--bold" required>
+        <select id="selectedHowMany" class="makeup__input para" required>
           <option value="" disabled selected hidden>0명</option>
           <option value="2">2명</option>
           <option value="3">3명</option>
@@ -128,13 +135,13 @@
       </div>
       <div class="makeup__form">
         <h2 class="makeup__text">카카오톡 ID :</h2>
-        <input type="text" class="makeup__input para para--bold" id="selectedKakao" placeholder="연락받으실 카카오톡 아이디를 입력해주세요." autocomplete="off"
+        <input type="text" class="makeup__input para" id="selectedKakao" placeholder="연락받으실 카카오톡 아이디를 입력해주세요." autocomplete="off"
           required readonly>
       </div>
       <div class="makeup__form">
         <h2 class="makeup__text">동행장의 말 :</h2>
-        <textarea class="makeup__input para para--bold makeup__textarea" id="selectedContent" placeholder="하고싶은 말을 적어주세요~" autocomplete="off"
-          required></textarea>
+        <textarea class="makeup__input para makeup__textarea" maxlength="200" id="selectedContent" placeholder="하고싶은 말을 적어주세요~"
+          autocomplete="off" required></textarea>
       </div>
       <div class="makeup__buttons">
         <button class="btn btn--white-small" id="backButton">취소</button>
@@ -147,7 +154,7 @@
   <div class="small-popup" id="small-popup">
     <div class="small-popup__content">
       <img src="../img/icon-info.png" alt="icon-info" class="small-popup__icon">
-      <h2 class="small-popup__text para">동행정보를 모두 입력해주세요.</h2>
+      <h2 class="small-popup__text para"></h2>
     </div>
   </div>
 
@@ -193,10 +200,10 @@
             <a href="../pages/qna.html" class="footer__list-item footer__link">QnA</a>
           </li>
           <li class="footer__list-item">
-            <a href="#" class="footer__list-item footer__link">서비스 이용약관</a>
+            <a href="./agreement.html" class="footer__list-item footer__link">서비스 이용약관</a>
           </li>
           <li class="footer__list-item">
-            <a href="#" class="footer__list-item footer__link">개인정보 취급정책</a>
+            <a href="./privacy.html" class="footer__list-item footer__link">개인정보 취급정책</a>
           </li>
           <li class="footer__list-item">
             <a href="#" class="footer__list-item footer__link">운영정책</a>

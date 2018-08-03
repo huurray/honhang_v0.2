@@ -1,3 +1,34 @@
+//상태체크
+
+function stateMenu() {
+  $('.header__state-menu').on('click', function () {
+    if ($('.header__state-menu').hasClass('menuOn')) {
+
+      $('.header__current-state').css("opacity", "0");
+
+      if($('.header__icon-arrow').attr("src") == "../img/up-arrow.png"){
+        $('.header__icon-arrow').attr("src", "../img/down-arrow.png");
+      } else if ($('.header__icon-arrow').attr("src") == "../img/up-arrow-black.png"){
+        $('.header__icon-arrow').attr("src", "../img/down-arrow-black.png");
+      }
+
+      $('.header__state-menu').removeClass('menuOn');
+    } else {
+
+      $('.header__current-state').css("opacity", "1");
+      
+      if($('.header__icon-arrow').attr("src") == "../img/down-arrow.png"){
+        $('.header__icon-arrow').attr("src", "../img/up-arrow.png");
+      } else if ($('.header__icon-arrow').attr("src") == "../img/down-arrow-black.png"){
+        $('.header__icon-arrow').attr("src", "../img/up-arrow-black.png");
+      }
+
+      $('.header__state-menu').addClass('menuOn');
+    }
+  })
+}
+stateMenu();
+
 //Auth
 function isSignIn() {
   var user = firebase.auth().currentUser;
@@ -41,7 +72,8 @@ function getSearchValue() {
 
   return docRefSearch.get().then(function (doc) {
     if (doc.exists) {
-      searchValue = doc.data().selectedPlace
+      searchValue = doc.data().selectedPlace;
+      $('.showSearchValue').html(`"${searchValue}"으로 검색하였습니다.`)
     } else {
       console.log("No such document!");
     }
@@ -54,8 +86,8 @@ function currentDateNum() {
   let getYear = date.getFullYear();
   let getMonthNum = date.getMonth();
   let getDate = date.getDate();
-  
-  if(getMonthNum < 9){
+
+  if (getMonthNum < 9) {
     getMonth = `0${getMonthNum+1}`
   } else {
     getMonth = getMonthNum + 1
@@ -63,7 +95,7 @@ function currentDateNum() {
 
   let currentDateString = `${getYear}${getMonth}${getDate}`;
   let currentDate = parseInt(currentDateString);
-  
+
   return currentDate;
 }
 
@@ -79,9 +111,11 @@ function getDataList() {
   const currentDate = currentDateNum();
   let dataList = [];
 
-  return index.search({ query: searchValue }).then(function (responses) {
-    dataList = responses.hits.filter(arr => arr.dateNum > currentDate)    
-    console.log(dataList)
+  return index.search({
+    query: searchValue
+  }).then(function (responses) {
+    dataList = responses.hits.filter(arr => arr.dateNum > currentDate)
+
     dataList.map(function (data, i) {
       let addLi = document.createElement('li');
       let addDivForTitle = document.createElement('div');
@@ -117,7 +151,7 @@ function getDataList() {
       document.querySelector('.detail__modal').appendChild(addDivForDetail);
       document.querySelectorAll('.board__list-item')[i].appendChild(addDivForTitle);
       document.querySelectorAll('.detail__content')[i].appendChild(addDivForTitle2);
-      
+
       document.querySelectorAll('.detail__content')[i].appendChild(addDivForDetailRow1);
       document.querySelectorAll('.detail__content')[i].appendChild(addDivForDetailRow2);
       document.querySelectorAll('.detail__content')[i].appendChild(addDivForDetailAbsol);
@@ -131,7 +165,7 @@ function getDataList() {
       document.querySelectorAll('.detail__absol')[i].appendChild(addDivForContact);
 
       let number = '';
-      if(i < 9) {
+      if (i < 9) {
         number = `0${i+1}`
       } else {
         number = `${i+1}`
@@ -146,7 +180,12 @@ function getDataList() {
       addParaForTime.innerHTML = `<p class="detail-p-title">시간.&nbsp;</p> ${data.time}`;
       addParaForHowMany.innerHTML = `<p class="detail-p-title">최대인원.&nbsp;</p> ${data.howMany}명`;
       addParaForContent.innerHTML = `<p class="detail-p-title">내용.&nbsp;</p> ${data.content}`;
-      addDivForContact.innerHTML = `<p class="detail-p-title kakao-title">카카오톡ID.&nbsp;</p> ${data.kakao}`;
+      addDivForContact.innerHTML = `<p class="detail-p-title kakao-title">카카오톡ID.&nbsp;</p><div class='kakao-id'>${data.kakao}</div>`;
+
+      //open profile
+      document.querySelectorAll('.kakao-id')[i].addEventListener('click', function () {
+        getUserData(data.kakao)
+      })
 
     })
     return dataList;
@@ -168,6 +207,7 @@ asyncCall();
 function openListDetail() {
   $('.board__list-item').each(function (index) {
     $(this).on("click", function () {
+      closeProfile();
       $('.detail__content').eq(index).animate({
         "right": "0",
         "opacity": "1"
@@ -202,20 +242,25 @@ $(document).ready(function () {
 });
 
 //re-search ani
-$('.side-nav').on('click', function() {
-  
-  if($(this).hasClass("down")){
+$('.side-nav').on('click', function () {
+
+  if ($(this).hasClass("down")) {
     $('.re-search').animate({
-      "bottom": "0"
+      "bottom": "-3rem"
+    });
+    $('.re-search__bar').animate({
+      "opacity": "1"
     });
     $(this).addClass("up").removeClass("down");
   } else {
     $('.re-search').animate({
-      "bottom": "-54rem"
+      "bottom": "-50rem"
+    });
+    $('.re-search__bar').animate({
+      "opacity": "0"
     });
     $(this).addClass("down").removeClass("up");
   }
- 
 })
 
 //re-search
@@ -276,18 +321,53 @@ $('.small-popup').on('click', function () {
   })
 })
 
-
 //see kakao profile
-function seeProfile(kakaoId) {
-  $('.kakao-profile__id').html(kakaoId);
-  $('.kakao-profile-back').addClass('kakao-profile-back__scaleUp')
-  $('.kakao-profile').css("display", "block");
 
+var userWithKakaoId;
+
+function getUserData(kakaoId) {
+
+  const docRefForUser = db.collection("users");
+  docRefForUser.where("kakaoId", "==", kakaoId).get()
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        userWithKakaoId = doc.data();
+        //arrange data
+        if (doc.exists) {
+          if (userWithKakaoId.kakaoSmallImg !== null) {
+            $('.kakao-profile__img').prop("src", userWithKakaoId.kakaoSmallImg);
+          } else {
+            $('.kakao-profile__img').prop("src", "../img/user-nobody.png");
+          }
+          $('.kakao-profile__name').html(userWithKakaoId.name);
+          $('.kakao-profile__age').html(`, ${userWithKakaoId.age}`);
+          $('.kakao-profile__city').html(userWithKakaoId.city);
+          $('.kakao-profile__email').html(userWithKakaoId.email);
+        }
+      });
+      //showup
+
+      $('.kakao-profile').css("display", "block");
+    })
+    .catch(function (error) {
+      console.log("Error getting documents: ", error);
+
+    });
 }
 
-//close kakao profile
 
-$('.kakao-profile__closer').on('click', function(){
-  $('.kakao-profile-back').removeClass('kakao-profile-back__scaleUp')
+
+//close profile
+function closeProfile() {
+  $('.kakao-profile__img').prop("src", "../img/user-nobody.png")
+  $('.kakao-profile__name').html("정보가 없습니다.");
+  $('.kakao-profile__city').html("");
+  $('.kakao-profile__age').html("");
+  $('.kakao-profile__email').html("");
+  //hideup
   $('.kakao-profile').css("display", "none");
+}
+
+$('.kakao-profile__closer').on('click', function () {
+  closeProfile();
 })

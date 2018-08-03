@@ -108,3 +108,19 @@
 }
 //make select element's placeholder
 select:invalid { color: $color-grey-dark;}
+
+.agreement{
+  margin: 5rem 0;
+  width: 100%;
+  &__box {
+    border: 2px solid $color-grey-dark;
+    padding: 3rem;
+  }
+  &__text {
+    border: 1px solid $color-grey-light-3;
+    padding: 2rem;
+    & p {
+      font-size: 1.25rem;
+    }
+  }
+}

@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Nanum+Gothic:400,700&amp;subset=korean" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
   <link rel="stylesheet" href="../css/style.css">
   <script src="../js/jquery.js"></script>
   <!-- date picker API -->
   <link rel="stylesheet" href="../css/datepicker.css">
   <script src="../js/datepicker.js"></script>
   <!-- time picker API -->
-  <link rel="stylesheet" href="../node_modules/jquery-timepicker/jquery.timepicker.css">
-  <script src="../node_modules/jquery-timepicker/jquery.timepicker.js"></script>
+  <link rel="stylesheet" href="../css/timepicker.css">
+  <script src="../js/timepicker.js"></script>
   <!-- firebase -->
   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>
@@ -33,25 +34,30 @@
         </div>
         <div class="header__right">
           <div class="header__right-button">
-            <a href="./signin.html" class="heading-english heading-english--white state-signin">LOGIN
-              <img src="../img/down-arrow.png" alt="icon" class="header__icon">
-            </a>
-          </div>
-          <div class="header__right-button">
-            <a href="#" onclick="signout()" class="heading-english heading-english--white state-signout">LOGOUT
-              <img src="../img/down-arrow.png" alt="icon" class="header__icon">
-            </a>
+            <div class="header__state-menu">
+              <div class="heading-korean heading-korean--white">
+                <img src="../img/icon-user-white.png" alt="icon" class="header__icon">
+                <img src="../img/down-arrow.png" alt="icon" class="header__icon-arrow">
+              </div>
+            </div>
+            <div class="header__current-state">
+              <a href="./signin.html" class="heading-korean state-signin">
+                로그인
+              </a>
+              <a href="#" onclick="signout()" class="heading-korean state-signout">
+                로그아웃
+              </a>
+            </div>
           </div>
           <div class="header__right-button header__box"></div>
           <div class="header__right-button">
-            <a href="#" onclick="isSignIn()" class="heading-english heading-english--primary">MAKE DONGHANG</a>
+            <a href="#" onclick="isSignIn()" class="heading-korean heading-korean--primary">동행 모집</a>
           </div>
           <div class="header__right-button">
-            <a href="#" class="heading-english heading-english--white boardAll">DONGHANG LIST</a>
+            <a href="#" class="heading-korean heading-korean--white boardAll">동행 리스트</a>
           </div>
-          <div class="header__right-button header__box"></div>
           <div class="header__right-button scrollNavi-category">
-            <a href="../index.html" class="heading-english heading-english--white">LOCAL MENTOR</a>
+            <a href="../index.html" class="heading-korean heading-korean--white">로컬 멘토</a>
           </div>
         </div>
       </div>
@@ -72,58 +78,55 @@
       </div>
     </div>
 
-    <!-- 재검색 네비게이션바 -->
-    <div class="re-search">
-
-      <div class="side-nav down">
-        <div class="heading-english heading-english--white side-nav__box">
-          <img src="../img/down-arrow.png" alt="down-arrow" class="side-nav__icon"> SEARCH
-        </div>
-      </div>
-      <div class="re-search__bar">
-        <label for="selectedPlace" class="re-search__label para para--white">여행지</label>
-        <input type="text" class="re-search__input" id="selectedPlace" placeholder="에펠탑" autocomplete="off">
-      </div>
-      <div class="re-search__bar">
-        <label for="selectedCity" class="re-search__label para para--white">도시</label>
-        <input type="text" class="re-search__input" id="selectedCity" placeholder="파리" autocomplete="off">
-      </div>
-      <div class="re-search__bar">
-        <label for="selectedDate" class="re-search__label para para--white">날짜</label>
-        <input type="text" class="re-search__input" id="selectedDate" placeholder="2020/07/19" readonly></input>
-      </div>
-      <div class="re-search__bar">
-        <label for="selectedTIme" class="re-search__label para para--white">시간</label>
-        <input class="re-search__input" id="selectedTIme" placeholder="8:00 AM" readonly>
-      </div>
-      <div class="re-search__bar">
-        <label for="selectedHowMany" class="re-search__label para para--white">최대인원</label>
-        <select id="selectedHowMany" class="re-search__input" required>
-          <option value="" disabled selected hidden>0명</option>
-          <option value="2">2명</option>
-          <option value="3">3명</option>
-          <option value="4">4명</option>
-          <option value="5">5명</option>
-          <option value="6">6명</option>
-          <option value="7">7명</option>
-          <option value="8">8명</option>
-          <option value="9">9명</option>
-        </select>
-      </div>
-      <button class="btn btn--color-reSearch" id="searchButton">검색</button>
-    </div>
-
     <section class="section-board">
 
       <div class="sort-tap">
+        <div class="sort-tap__box">
+          <div class="heading-english heading-english--white">ALL</div>
+        </div>
         <div class="sort-tap__box on">
-          <a href="#" class="heading-english heading-english--white">ALL</a>
+          <div class="heading-english heading-english--white">CUSTOM</div>
         </div>
-        <div class="sort-tap__box">
-          <a href="#" class="heading-english heading-english--white">PEOPLE</a>
-        </div>
-        <div class="sort-tap__box">
-          <a href="#" class="heading-english heading-english--white">MENTO</a>
+        <div class="sub-para sub-para--white u-margin-top-2 showSearchValue"></div>
+        <!-- 재검색 네비게이션바 -->
+        <div class="re-search">
+
+          <div class="side-nav down">
+            <div class="heading-english heading-english--white side-nav__box">
+              <img src="../img/icon-search-white.png" alt="down-arrow" class="side-nav__icon"> RE-SEARCH
+            </div>
+          </div>
+          <div class="re-search__bar">
+            <label for="selectedPlace" class="re-search__label para para--white">여행지 키워드 *</label>
+            <input type="text" class="re-search__input" id="selectedPlace" placeholder="에펠탑" autocomplete="off">
+          </div>
+          <div class="re-search__bar">
+            <label for="selectedCity" class="re-search__label para para--white">도시</label>
+            <input type="text" class="re-search__input" id="selectedCity" placeholder="파리" autocomplete="off">
+          </div>
+          <div class="re-search__bar">
+            <label for="selectedDate" class="re-search__label para para--white">날짜</label>
+            <input type="text" class="re-search__input" id="selectedDate" placeholder="2020/07/19" readonly></input>
+          </div>
+          <div class="re-search__bar">
+            <label for="selectedTIme" class="re-search__label para para--white">시간</label>
+            <input class="re-search__input" id="selectedTIme" placeholder="8:00 AM" readonly>
+          </div>
+          <div class="re-search__bar">
+            <label for="selectedHowMany" class="re-search__label para para--white">최대인원</label>
+            <select id="selectedHowMany" class="re-search__input" required>
+              <option value="" disabled selected hidden>0명</option>
+              <option value="2">2명</option>
+              <option value="3">3명</option>
+              <option value="4">4명</option>
+              <option value="5">5명</option>
+              <option value="6">6명</option>
+              <option value="7">7명</option>
+              <option value="8">8명</option>
+              <option value="9">9명</option>
+            </select>
+          </div>
+          <button class="btn btn--color-reSearch u-margin-top-2" id="searchButton">검색</button>
         </div>
       </div>
 
@@ -135,12 +138,19 @@
       </div>
       <div class="detail">
         <div class="detail__modal">
-          <div class="kakao-profile-back"></div>
+
           <div class="kakao-profile">
-            <div class="kakao-profile__id"></div>
-            <div class="kakao-profile__closer">
-              뒤로
+            <img src="../img/user-nobody.png" alt="kakao-profile-img" class="kakao-profile__img">
+            <div class="kakao-profile__name-box">
+              <div class="kakao-profile__name para para--bold">정보가 없습니다.</div>
+              <div class="kakao-profile__age sub-para"></div>
             </div>
+            <div class="kakao-profile__city-box sub-para sub-para--grey">
+              <img src="../img/icon-location.png" alt="icon-location" class="kakao-profile__icon">
+              <div class="kakao-profile__city"></div>
+            </div>
+            <div class="kakao-profile__email small-para small-para--grey"></div>
+            <a href="#" class="kakao-profile__closer">&times;</a>
           </div>
           <!-- 자바스크립트로 엘리먼트 생성된 DOM엘리먼트 위치 -->
         </div>

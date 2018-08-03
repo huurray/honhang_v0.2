@@ -49,10 +49,10 @@
     }
   }
   &--white {
-    background:$color-white;
+    
     color: $color-primary;
-    width: 30rem;
-    border: 1px solid $color-primary;
+    width: 20rem;
+    border: 1px solid $color-primary !important;
     &::after {
       background: $color-white;
     }
@@ -84,7 +84,7 @@
   }
   &--color-reSearch {
     background: $color-primary;
-    width: 80%;
+    width: 70%;
     height: 4.5rem;
     color: $color-white;
     padding: 1rem;
@@ -109,9 +109,28 @@
   }
   &:hover {
     transform: translateY(-2px);
+    border-bottom: 1px solid $color-black;
   }
   &:active {    
     transform: translateY(0);
+  }
+}
+
+.btn-text-bottom {
+  border-bottom: 1px solid transparent;
+  &:link,
+  &:visited {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $color-black;
+    display: inline-block;
+    text-decoration: none;
+    padding: 3px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  &:hover {
+    border-bottom: 1px solid $color-black;
   }
 }
 
